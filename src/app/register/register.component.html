@@ -1,0 +1,71 @@
+<div *ngIf="!success">
+  <mat-grid-list cols="1" rowHeight="2:1">
+    <form [formGroup]="registerData" (ngSubmit)="onSubmit()">
+
+      <mat-grid-tile>
+        <mat-card style="width:30%;">
+          <mat-card-header style="display:flex; justify-content:center;">
+            <mat-card-title style="width:300px">Register</mat-card-title>
+            <mat-card-subtitle style="width:300px">Please Fill the data</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content style="display:flex; justify-content:flex-start;">
+            <mat-list>
+              <mat-list-item>
+                <mat-form-field style="width:300px">
+                  <input matInput type="email" formControlName="email" placeholder="email">
+                </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-error *ngIf="(email.touched) && email.invalid && email.errors.required">
+                  Email is required.
+                </mat-error>
+              </mat-list-item>
+
+              <mat-list-item>
+                <mat-form-field style="width:300px">
+                  <input matInput type="password" formControlName="password" placeholder="password">
+                </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-error *ngIf="(password.touched) && password.invalid && password.errors.required">
+                  Password is required.
+                </mat-error>
+              </mat-list-item>
+
+              <mat-list-item>
+                <mat-form-field style="width:300px">
+                  <input matInput type="text" formControlName="username" placeholder="username">
+                </mat-form-field>
+              </mat-list-item>
+
+              <!-- <mat-list-item>
+              <mat-error *ngIf="(username.touched) && password.invalid ">
+                Password is required.
+              </mat-error>
+            </mat-list-item> -->
+
+              <mat-card-actions>
+                <mat-list-item>
+                  <button type="submit" [disabled]="!registerData.valid">Register</button>
+                </mat-list-item>
+              </mat-card-actions>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </form>
+  </mat-grid-list>
+</div>
+<div *ngIf="success">
+  <mat-grid-list cols="1" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card style="width:70%;">
+        <mat-card-content style="display:flex; justify-content:center;">
+          <p>User successfully registered,Please
+            <span><a [routerLink]="['/login']">Login</a></span>
+            to continue</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
