@@ -14,14 +14,13 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string): Observable<Object> {
+  login(obj: Object): Observable<Object> {
 
     return this.http
-      .get(LoginService.API_URL + 'login/' + email)
+      .post(LoginService.API_URL + 'login/', obj)
       .pipe(
         map(x => {
-          console.log(JSON.stringify(x['user'].email));
-          this.userData = User.getInstance(x['user'].email, x['user'].password, x['user'].username);
+          this.userData = User.getInstance(x['email'], x['password'], x['username']);
           return this.userData;
         })
       );

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     // console.warn(this.loginData.value['email']);
-    this.loginService.login(this.loginData.value.email).subscribe((x) => {
+    this.loginService.login(this.loginData.value).subscribe((x) => {
       // console.log(x);
       if (!!x || x !== null) {
         this.profile = true;
