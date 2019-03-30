@@ -1,13 +1,58 @@
-<p>
-  {{'{'}}
-</p>
-<p>
-  email: {{userData.email}} <span>,</span>
-</p>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false">
 
-<p>
-  username:{{userData.username}}
-</p>
-<p>
-  {{'}'}}
-</p>
+  <!-- Navbar brand -->
+  <!-- <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand> -->
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="user"></mdb-icon> Slider<span class="caret"></span>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['slider']"
+            (click)="showSlider($event)">Slider</a>
+          <!-- <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a> -->
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+<div>
+  <p>
+    {{'{'}}
+  </p>
+  <p>
+    email: {{userData.email}} <span>,</span>
+  </p>
+
+  <p>
+    username:{{userData.username}}
+  </p>
+  <p>
+    {{'}'}}
+  </p>
+  <div>
+    <form enctype="multipart/form-data">
+      <input type='file' (change)="onSelectFile($event)" multiple><br />
+      <p> Display images to be uploaded</p>
+      <img *ngFor='let url of urls' [src]="url" height="200"> <br />
+
+      <input type="submit" (click)="upload()" name="Submit" />
+    </form>
+
+  </div>
+</div>
+<router-outlet *ngIf="slider"></router-outlet>
